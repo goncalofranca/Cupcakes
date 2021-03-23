@@ -18,13 +18,13 @@
         <h1 class="title">Edit a Cupcake</h1>
         <form method="post" enctype="multipart/form-data" asp-action="Edit">
             <div asp-validation-summary="ModelOnly"></div>
-            <input type="hidden" asp-for="CupcakeId" />
+            <input type="hidden" asp-for="CupcakeID" />
             <div class="form-field">
                 <label asp-for="Bakery"></label>
-                <select asp-for="BakeryId" asp-items="ViewBag.BakeryID">
+                <select asp-for="BakeryID" asp-items="ViewBag.BakeryID">
                     <option selected="selected" value="">Select</option>
                 </select>
-                <span asp-validation-for="BakeryId"></span>
+                <span asp-validation-for="BakeryID"></span>
             </div>
             <div class="form-field">
                 <label asp-for="CupcakeType"></label>

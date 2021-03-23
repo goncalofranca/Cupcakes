@@ -15,10 +15,11 @@ namespace Cupcakes
 
         public void ConfigureServices(IServiceCollection services)
         {
+            //Microsoft.AspNetCore.Mvc.MvcOptions.EnableEndpointRouting = false;
            // var _ctxConnectionString = @"Server=(localdb)\MSSQLLocalDB;Database=BakeriesDb;Trusted_Connection=True;MultipleActiveResultSets=true";
             _ = services.AddTransient<ICupcakeRepository, CupcakeRepository>();
             _ = services.AddDbContext<CupcakeContext>(options => options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
-            _ = services.AddMvc();
+            _ = services.AddMvc(x => x.EnableEndpointRouting = false);
         }
 
         public void Configure(IApplicationBuilder app)

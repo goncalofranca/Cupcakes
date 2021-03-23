@@ -36,10 +36,10 @@ namespace Cupcakes.Repositories
 
         public void DeleteCupcake(int id)
         {
-            _ = _context.Remove(_context.Cupcakes.SingleOrDefault(c => c.CupcakeId == id));
+            _ = _context.Remove(_context.Cupcakes.SingleOrDefault(c => c.CupcakeID == id));
             _ = _context.SaveChanges();
         }
-        public Cupcake GetCupcakeById(int id) => _context.Cupcakes.Include(b => b.Bakery).SingleOrDefault(c => c.CupcakeId == id);
+        public Cupcake GetCupcakeById(int id) => _context.Cupcakes.Include(b => b.Bakery).SingleOrDefault(c => c.CupcakeID == id);
         public IEnumerable<Cupcake> GetCupcakes()
         {
             return _context.Cupcakes.ToList();

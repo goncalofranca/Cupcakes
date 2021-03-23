@@ -22,7 +22,7 @@
             @if (Model.ImageName != null)
             {
                 <div class="photo-display">
-                    <img class="photo-display-img" src="@Url.Action("GetImage", "Cupcake", new { Id = Model.CupcakeId })" />
+                    <img class="photo-display-img" src="@Url.Action("GetImage", "Cupcake", new { Id = Model.CupcakeID })" />
                 </div>
             }
             <div>
@@ -52,7 +52,7 @@
             </div>
         </div>
         <form asp-action="Delete">
-            <input type="hidden" asp-for="CupcakeId" />
+            <input type="hidden" asp-for="CupcakeID" />
             <input type="submit" value="Delete" /> |
             <a asp-action="Index">Back to List</a>
         </form>

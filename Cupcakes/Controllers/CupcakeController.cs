@@ -15,9 +15,9 @@ namespace Cupcakes.Controllers
     public class CupcakeController : Controller
     {
         private ICupcakeRepository _repository;
-        private IHostingEnvironment _environment;
+        private IWebHostEnvironment _environment;
 
-        private CupcakeController(ICupcakeRepository repository, IHostingEnvironment environment)
+        private CupcakeController(ICupcakeRepository repository, IWebHostEnvironment environment)
         {
             _repository = repository;
             _environment = environment;
@@ -38,7 +38,7 @@ namespace Cupcakes.Controllers
         {
             var _ctxBakeries = _repository.PopulateBakeriesDropDownList();
 
-            ViewBag["BakeryID"] = new SelectList(_ctxBakeries.AsNoTracking(), "BakeryId", "BakeryName", selectedBakery);
+            ViewBag["BakeryID"] = new SelectList(_ctxBakeries.AsNoTracking(), "BakeryID", "BakeryName", selectedBakery);
         }
 
         [HttpGet]
@@ -59,7 +59,7 @@ namespace Cupcakes.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            PopulateBakeriesDropDownList(cupcake.BakeryId);
+            PopulateBakeriesDropDownList(cupcake.BakeryID);
             return View(cupcake);
         }
 
@@ -72,7 +72,7 @@ namespace Cupcakes.Controllers
                 return NotFound();
             }
 
-            PopulateBakeriesDropDownList(_ctxCupcake.BakeryId);
+            PopulateBakeriesDropDownList(_ctxCupcake.BakeryID);
             return View(_ctxCupcake);
         }
 
@@ -81,7 +81,7 @@ namespace Cupcakes.Controllers
         public async Task<IActionResult> EditPost(int id)
         {
             var _ctxCupcakeToUpdate = _repository.GetCupcakeById(id);
-            bool _ctxIsUpdated = await TryUpdateModelAsync(_ctxCupcakeToUpdate, "", c => c.BakeryId, c => c.CupcakeType, c => c.Description, c => c.GlutenFree, c => c.Price);
+            bool _ctxIsUpdated = await TryUpdateModelAsync(_ctxCupcakeToUpdate, "", c => c.BakeryID, c => c.CupcakeType, c => c.Description, c => c.GlutenFree, c => c.Price);
 
             if(_ctxIsUpdated)
             {
@@ -90,7 +90,7 @@ namespace Cupcakes.Controllers
 
             }
 
-            PopulateBakeriesDropDownList(_ctxCupcakeToUpdate.BakeryId);
+            PopulateBakeriesDropDownList(_ctxCupcakeToUpdate.BakeryID);
             return View(_ctxCupcakeToUpdate);
         }
 
@@ -103,13 +103,13 @@ namespace Cupcakes.Controllers
                 return NotFound();
             }
 
-            PopulateBakeriesDropDownList(_ctxCupcake.BakeryId);
+            PopulateBakeriesDropDownList(_ctxCupcake.BakeryID);
             return View(_ctxCupcake);
         }
 
         [HttpPost]
         [ActionName("Delete")]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public IActionResult DeleteConfirmed(int id)
         {
             var _ctxCupcakeToDelete = _repository.GetCupcakeById(id);
             //_repository.DeleteCupcake(_ctxCupcakeToDelete.CupcakeId);

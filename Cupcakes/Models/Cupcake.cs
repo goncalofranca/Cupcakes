@@ -12,7 +12,7 @@ namespace Cupcakes.Models
     {
         [Required(ErrorMessage ="Please select a cupcake type")]
         [Display(Name ="Cupcake Type")]
-        public int CupcakeId { get; set; }
+        public int CupcakeID { get; set; }
         public CupcakeType? CupcakeType { get; set; }
 
         [Required(ErrorMessage = "Please select a cupcake description")]
@@ -33,10 +33,10 @@ namespace Cupcakes.Models
         public string ImageName{ get; set; }
         public byte[] PhotoFile { get; set; }
         public string ImageMimeType { get; set; }
-        
-        [Key]
-        [Required(ErrorMessage = "Please select a bakery")]
-        public int? BakeryId { get; set; }
+
+
+        [Required(ErrorMessage = "Please select a Bakery")]
+        public int? BakeryID { get; set; }
         public virtual Bakery Bakery { get; set; }
     }
 }
